@@ -1,23 +1,8 @@
-def read_input(file):
-    f = open(file, 'r')
-    out = f.readlines()
-    out2 = out[0].split(",")
-    for i in range(0, len(out2)):
-        out2[i] = int(out2[i])
-    f.close()
-    return out2
+import aoc2_1 as ac
 
-def oper_add(input,slice):
-    #print(slice)
-    input[slice[3]] = input[slice[1]] + input[slice[2]]
-    return input
-
-def oper_multip(input,slice):
-    input[slice[3]] = input[slice[1]] * input[slice[2]]
-    return input
 
 def main():
-    input = read_input("aoc2_input.txt")
+    input = ac.read_input("aoc2_input.txt")
     found = 0
     for noun in range (0,100):
         if found == 1:
@@ -36,11 +21,11 @@ def main():
             while opcode:
                 #print("Opcode: ", opcode, ", counter: ", counter)
                 if opcode == 1:
-                    input_temp = oper_add(input_temp, input_temp[counter:counter+4])
+                    input_temp = ac.oper_add(input_temp, input_temp[counter:counter+4])
                     counter += 4
                     opcode = input_temp[counter]
                 elif opcode == 2:
-                    input_temp = oper_multip(input_temp, input_temp[counter:counter + 4])
+                    input_temp = ac.oper_multip(input_temp, input_temp[counter:counter + 4])
                     counter += 4
                     opcode = input_temp[counter]
                 elif opcode == 99:
